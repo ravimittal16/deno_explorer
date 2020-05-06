@@ -1,6 +1,7 @@
-import { bold } from "./deps.ts";
+import { bold, underline } from "./deps.ts";
 
-export function getHelloWorld(): string {
-  return bold("Hello World");
+export function getHelloWorld(_underline: boolean): string {
+  return _underline ? underline(bold("Hello World")) : bold("Hello World");
 }
-console.log(getHelloWorld());
+
+console.log(getHelloWorld(true));
