@@ -1,7 +1,21 @@
-import { bold, underline } from "./deps.ts";
+console.info("Hello there!");
 
-export function getHelloWorld(_underline: boolean): string {
-  return _underline ? underline(bold("Hello World")) : bold("Hello World");
-}
+import { serve, green, v4 } from "./deps.ts";
+// @ts-ignore
 
-console.log(getHelloWorld(true));
+const server = serve(":8000");
+console.info("server created!!");
+
+(async () => {
+  console.log(green("Listening on http://localhost:8000/"));
+  for await (const req of server) {
+    const body = JSON.stringify({
+      name: "Ravi",
+      lastName: "Mittal",
+      createdDate: new Date(),
+      requestUniqueId: v4.generate(),
+    });
+    req.headers.append("Content-Type", "application/json");
+    req.respond({ body });
+  }
+})();
