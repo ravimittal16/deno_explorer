@@ -19,3 +19,5 @@ console.info("server created!!");
     req.respond({ body });
   }
 })();
+
+// deno bundle server.ts [out.js]
